@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Luigi — Photographe urbain</title>
+  <meta name="description" content="Luigi, photographe urbain — scènes rock, rap marseillais & 8-4 City. Concerts, portraits au flash, villes et garages.">
+  <link rel="icon" type="image/png" href="image/LUUIGI.png" />
+  <link rel="apple-touch-icon" href="image/LUUIGI.png" />
+  <style>
+    :root{--bg:#0b0b0c;--fg:#f6f6f7;--muted:#b5b6ba;--card:#131316;--border:#22252b}
+    *{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+    .container{max-width:1200px;margin:0 auto;padding:0 18px}
+    header{position:sticky;top:0;z-index:50;background:rgba(11,11,12,.7);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+    .bar{height:68px;display:flex;align-items:center;justify-content:space-between}
+    .brand-wrap{display:flex;align-items:center;gap:10px}.logo{width:28px;height:28px;object-fit:contain;border-radius:6px}
+    .brand{font-weight:700;letter-spacing:.2px;white-space:nowrap}
+    nav a{margin-left:20px;color:rgba(246,246,247,.85)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--fg);cursor:pointer}
+    .btn.primary{background:var(--fg);color:#0b0b0c;border-color:transparent}
+    .muted{color:var(--muted)}section{scroll-margin-top:84px;padding:84px 0}
+    h1{margin:0;font-size:clamp(34px,6vw,60px);line-height:1.05}p.lead{margin:14px 0 0;font-size:18px;max-width:760px;color:var(--muted)}
+    .chips{display:flex;flex-wrap:wrap;gap:10px}.chip{padding:8px 14px;border:1px solid var(--border);border-radius:999px;background:#121315;cursor:pointer}
+    .chip.active{background:var(--fg);color:#0b0b0c;border-color:transparent}
+    .masonry{column-count:1;column-gap:18px}@media(min-width:640px){.masonry{column-count:2}}@media(min-width:1024px){.masonry{column-count:3}}
+    .masonry figure{break-inside:avoid;margin:0 0 18px;position:relative;cursor:zoom-in}
+    .masonry img{width:100%;height:auto;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+    .tag{position:absolute;left:10px;bottom:10px;background:rgba(19,19,22,.85);border:1px solid var(--border);padding:4px 10px;border-radius:999px;font-size:12px}
+    .grid{display:grid;gap:18px}@media(min-width:900px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px}
+    .about{display:grid;gap:24px}@media(min-width:900px){.about{grid-template-columns:1.1fr .9fr;align-items:center}}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:80}
+    .lightbox.open{display:flex}.lightbox img{max-width:92vw;max-height:84vh;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+    .lb-btn{position:absolute;top:50%;transform:translateY(-50%);border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;border-radius:10px;padding:10px;cursor:pointer}
+    .lb-prev{left:16px}.lb-next{right:16px}.lb-close{top:16px;right:16px;transform:none}
+    footer{border-top:1px solid var(--border);padding:28px 0;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container bar">
+      <div class="brand-wrap">
+        <img class="logo" src="image/LUUIGI.png" alt="Logo Luigi" />
+        <div class="brand">Luigi — Photographe urbain</div>
+      </div>
+      <nav>
+        <a href="#portfolio">Portfolio</a><a href="#services">Prestations</a><a href="#apropos">À propos</a><a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="accueil">
+    <div class="container">
+      <h1>Photographe urbain — scènes rock, rap marseillais & 8-4 City</h1>
+      <p class="lead">Concerts, coulisses, portraits au flash, villes et garages. Des images grainées, nerveuses, pensées pour affiches, pochettes et réseaux.</p>
+      <div style="margin-top:16px;display:flex;gap:10px">
+        <a class="btn primary" href="#portfolio">Voir le portfolio</a>
+        <a class="btn" href="https://www.instagram.com/luuigi1312/" target="_blank" rel="noreferrer">Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="container">
+      <div style="display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <div><h2>Portfolio sélectionné</h2><p class="muted">Filtrez par discipline pour parcourir les séries.</p></div>
+        <div class="chips" id="chips">
+          <button type="button" class="chip active" data-filter="Tous">Tous</button>
+          <button type="button" class="chip" data-filter="Concert">Concert</button>
+          <button type="button" class="chip" data-filter="Portrait">Portrait</button>
+          <button type="button" class="chip" data-filter="Urbain">Urbain</button>
+          <button type="button" class="chip" data-filter="Auto">Auto</button>
+        </div>
+      </div>
+
+      <div class="masonry" id="gallery" style="margin-top:20px">
+        <!-- CONCERT -->
+        <figure data-tag="Concert"><img loading="lazy" src="image/photo-rock-1.JPG" alt="Live rock — vue scène, claviers et basse"><figcaption class="tag">Concert</figcaption></figure>
+        <figure data-tag="Concert"><img loading="lazy" src="image/photo-rock-2.JPG" alt="Live rock — guitariste et chanteuse"><figcaption class="tag">Concert</figcaption></figure>
+        <figure data-tag="Concert"><img loading="lazy" src="image/photo-rock-3.JPG" alt="Live rock — énergie sur scène"><figcaption class="tag">Concert</figcaption></figure>
+        <figure data-tag="Concert"><img loading="lazy" src="image/photo-rock-girlz-1.JPG" alt="Backstage — trio posé au sol"><figcaption class="tag">Concert</figcaption></figure>
+        <figure data-tag="Concert"><img loading="lazy" src="image/photo-rock-girlz-2.JPG" alt="Répétition — trois musiciennes et pédales"><figcaption class="tag">Concert</figcaption></figure>
+        <figure data-tag="Concert"><img loading="lazy" src="image/photo-rock-girlz-3.JPG" alt="Backstage — discussion avant set"><figcaption class="tag">Concert</figcaption></figure>
+        <!-- PORTRAITS -->
+        <figure data-tag="Portrait"><img loading="lazy" src="image/84-city-1.JPG" alt="Portrait flash — regard face caméra"><figcaption class="tag">Portrait</figcaption></figure>
+        <figure data-tag="Portrait"><img loading="lazy" src="image/84-city-2.JPG" alt="Portrait profil — veste FFF"><figcaption class="tag">Portrait</figcaption></figure>
+        <figure data-tag="Portrait"><img loading="lazy" src="image/84-city-3.JPG" alt="Street — détail chaussures et mains"><figcaption class="tag">Portrait</figcaption></figure>
+        <!-- URBAIN -->
+        <figure data-tag="Urbain"><img loading="lazy" src="image/flou.JPG" alt="Allure — flou artistique en ville"><figcaption class="tag">Urbain</figcaption></figure>
+        <figure data-tag="Urbain"><img loading="lazy" src="image/84-city-2.JPG" alt="Passerelle — tours et passants"><figcaption class="tag">Urbain</figcaption></figure>
+        <!-- AUTO -->
+        <figure data-tag="Auto"><img loading="lazy" src="image/vroum.JPG" alt="Garage — anciennes et MX-5"><figcaption class="tag">Auto</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="background:#0e0f12">
+    <div class="container">
+      <h2>Prestations</h2>
+      <p class="muted">Des offres claires pour artistes, collectifs et marques. Livraison rapide, retouches soignées.</p>
+      <div class="grid cols-3" style="margin-top:18px">
+        <div class="card"><h3>Concert / Rock</h3><p class="muted">Live, backstage, balances. Noir & blanc granuleux, accès rapide aux sélections.</p><div class="muted" style="margin-top:8px">sur devis</div></div>
+        <div class="card"><h3>Portrait urbain</h3><p class="muted">Flash on-camera, ambiance street. Artistes, rappeurs, presse.</p><div class="muted" style="margin-top:8px">à partir de 150€</div></div>
+        <div class="card"><h3>Urbain / Auto / Ville</h3><p class="muted">Séries esthétiques : archi, paysages urbains, garages, voitures.</p><div class="muted" style="margin-top:8px">sur devis</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="apropos">
+    <div class="container about">
+      <div>
+        <h2>Urbain, brut, musical</h2>
+        <p class="muted">Je m'appelle Luigi. Basé entre Avignon (8-4 City) et Marseille, je photographie les scènes rock et le rap marseillais (Open Croc, collectifs locaux) et l'esthétique urbaine : backstage, pits, ruelles, parkings, garages. Style brut, noir & blanc et couleurs désaturées, flash assumé, cadrages serrés. Objectif : des visuels forts pour affiches, pochettes, réseaux et presse.</p>
+        <div style="margin-top:14px;display:flex;gap:10px">
+          <a class="btn primary" href="#contact">Me contacter</a>
+          <a class="btn" href="https://www.instagram.com/luuigi1312/" target="_blank" rel="noreferrer">Instagram</a>
+        </div>
+      </div>
+      <div class="card"><p class="muted">Dispo : Avignon, Marseille, déplacements France/Europe.</p></div>
+    </div>
+  </section>
+
+  <section id="contact" style="background:#0e0f12">
+    <div class="container" style="display:grid;gap:20px;grid-template-columns:1fr;align-items:start">
+      <div>
+        <h2>Parlons de votre projet</h2>
+        <p class="muted">Décrivez votre besoin, réponse sous 24h ouvrées.</p>
+        <div style="margin-top:10px;color:var(--fg)">
+          <div style="margin:6px 0">📧 <a href="mailto:contact@luigi-photo.fr">contact@luigi-photo.fr</a></div>
+          <div style="margin:6px 0">📞 <a href="tel:+33612345678">+33 6 12 34 56 78</a></div>
+          <div style="margin:6px 0">📍 Avignon — Marseille</div>
+        </div>
+      </div>
+      <form class="card" onsubmit="event.preventDefault();alert('Merci ! Je vous réponds vite.');">
+        <label>Nom<br><input required style="width:100%;height:42px;border:1px solid var(--border);border-radius:10px;background:#0b0b0c;color:var(--fg);padding:0 12px"></label><br><br>
+        <label>Email<br><input type="email" required style="width:100%;height:42px;border:1px solid var(--border);border-radius:10px;background:#0b0b0c;color:var(--fg);padding:0 12px"></label><br><br>
+        <label>Prestation<br>
+          <select style="width:100%;height:42px;border:1px solid var(--border);border-radius:10px;background:#0b0b0c;color:var(--fg);padding:0 10px">
+            <option>Concert / Rock</option><option>Portrait urbain</option><option>Urbain / Auto / Ville</option>
+          </select>
+        </label><br><br>
+        <label>Message<br><textarea rows="4" style="width:100%;border:1px solid var(--border);border-radius:10px;background:#0b0b0c;color:var(--fg);padding:10px"></textarea></label><br>
+        <button class="btn primary" type="submit">Envoyer</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+      <div>© <span id="year"></span> Luigi. Tous droits réservés.</div>
+      <a href="#accueil">Haut de page ↑</a>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-btn lb-close" id="lbClose" aria-label="Fermer">✕</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Précédent">◀</button>
+    <img id="lbImg" alt="">
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Suivant">▶</button>
+  </div>
+
+  <script>
+    // Tout après chargement DOM
+    document.addEventListener('DOMContentLoaded', () => {
+      // Année footer
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // FILTRES (délégation)
+      const chipsWrap = document.getElementById('chips');
+      const chips = () => [...chipsWrap.querySelectorAll('.chip')];
+      const figures = () => [...document.querySelectorAll('#gallery figure')];
+
+      chipsWrap.addEventListener('click', (e) => {
+        const btn = e.target.closest('.chip');
+        if (!btn) return;
+        chips().forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        figures().forEach(fig => {
+          fig.style.display = (f === 'Tous' || fig.dataset.tag === f) ? '' : 'none';
+        });
+      });
+
+      // LIGHTBOX
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImg');
+      const lbPrev = document.getElementById('lbPrev');
+      const lbNext = document.getElementById('lbNext');
+      const lbClose = document.getElementById('lbClose');
+      const gallery = document.getElementById('gallery');
+      let imgs = [...gallery.querySelectorAll('img')];
+      let idx = 0;
+
+      function open(i){ idx = i; lbImg.src = imgs[idx].src; lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); }
+      function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); }
+      function prev(){ idx = (idx - 1 + imgs.length) % imgs.length; lbImg.src = imgs[idx].src; }
+      function next(){ idx = (idx + 1) % imgs.length; lbImg.src = imgs[idx].src; }
+
+      // Délégation : clic sur figure OU image
+      gallery.addEventListener('click', (e) => {
+        const el = e.target.closest('figure, img');
+        if (!el) return;
+        const all = [...gallery.querySelectorAll('img')];
+        imgs = all; // refresh si filtres modifient le DOM visible
+        const clickedImg = e.target.tagName === 'IMG' ? e.target : el.querySelector('img');
+        const i = all.indexOf(clickedImg);
+        if (i > -1) open(i);
+      });
+
+      lbClose.addEventListener('click', closeLb);
+      lbPrev.addEventListener('click', prev);
+      lbNext.addEventListener('click', next);
+      document.addEventListener('keydown', (e)=> {
+        if(!lb.classList.contains('open')) return;
+        if(e.key==='Escape') closeLb();
+        if(e.key==='ArrowLeft') prev();
+        if(e.key==='ArrowRight') next();
+      });
+      lb.addEventListener('click', (e)=> { if(e.target===lb) closeLb(); });
+    });
+  </script>
+</body>
+</html>
